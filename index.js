@@ -15,6 +15,10 @@ app.get('/home', (req, res)=>{
     res.send("welcome to home")
 })
 
+app.get('/login', (req, res)=>{
+    res.send("wonderful you are logged in now")
+})
+
 // port to listen
 const PORT = process.env.PORT || 5000
 
