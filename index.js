@@ -6,6 +6,10 @@ const app = express()
 const adventureRoute = require('./routes/adventure')
 const mongoose = require("mongoose")
 const cookieParser = require('cookie-parser');
+const authRoute = require('./routes/auth')
+const userRoute = require('./routes/user')
+const pixRoute = require('./routes/picture')
+const videoRoute = require('./routes/video')
 
 
 // connecting our database
@@ -27,6 +31,10 @@ app.get('/home', (req, res)=>{
     res.send("welcome to home")
 })
 app.use('/app', adventureRoute)
+app.use('/app', authRoute)
+app.use('/app', userRoute)
+app.use('/app', pixRoute)
+app.use('/app', videoRoute)
 
 // error handling middleware
 app.use((err, req, res, next)=>{
