@@ -35,8 +35,8 @@ dotenv.config()
     // @if the user is verified, we run this to send jwt and also to set it in his browser cookies
     
       const token = jwt.sign({id:user._id, email:user.email,password:user.password}, process.env.JWT__TOKEN,)
-      res.cookie('access_Token', token, {httpOnly: true, maxAge: 999999999999999} )
-      .status(200).json(user)
+      const{dpassword, ...others} = user._doc
+      res.status(200).json({...others, token})
     } catch (error) {
         next(error)
     }
@@ -57,9 +57,8 @@ dotenv.config()
             const savedUser = await newUser.save()
     
             const token = jwt.sign({id:savedUser._id,  email:savedUser.email}, process.env.JWT__TOKEN )
-            res.cookie("access_Token", token, {
-              httpOnly: true, maxAge: 999999999999999
-            }).status(200).json(user)
+            const{dpassword, ...others} = user._doc
+            res.status(200).json({...others, token})
         }
     } catch (error) {
         next(error)

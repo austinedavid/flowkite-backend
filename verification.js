@@ -1,7 +1,9 @@
 const jwt =  require("jsonwebtoken");
 
 const verification = (req, res, next)=>{
-    const token = req.cookies.access_Token
+    const returnToken = req.headers.token
+
+    const token = returnToken.split(" ")[1];
     
     if(!token){
         return res.send('you are not logged in')
