@@ -11,7 +11,7 @@ const userRoute = require('./routes/user')
 const pixRoute = require('./routes/picture')
 const videoRoute = require('./routes/video')
 
-
+mongoose.set('strictQuery', false)
 // connecting our database
 const dbConnection = async()=>{
     try {
