@@ -27,7 +27,7 @@ dotenv.config()
     if(!user){
         return res.status(404).send('user not found')
     }
-    const bcryptCompare = await bcrypt.compare(req.body.password, user.password)
+    const bcryptCompare =  bcrypt.compare(req.body.password, user.password)
     if(!bcryptCompare){
         return res.status(404).send('password is not correct')
     }
